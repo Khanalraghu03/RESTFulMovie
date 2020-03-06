@@ -26,7 +26,7 @@ public class MovieDAO {
 
     public List<Movie> getAll() {
         List<Movie> movies = entMan.createQuery(
-                "SELECT n from Movie n", Movie.class).getResultList();
+                "SELECT movie from Movie movie", Movie.class).getResultList();
         return movies;
     }
     public void updateByMovie(Movie movie) {
