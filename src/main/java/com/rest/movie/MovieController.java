@@ -5,12 +5,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 public class MovieController {
+
     @Autowired
     private MovieDAO movieDAO = new MovieDAO();
+
+    @GetMapping("/index")
+    public String index(){
+        return "index";
+    }
+
 
     @RequestMapping(value = "/movies", method = RequestMethod.GET)
     public List<Movie> getMovie() {
@@ -31,9 +39,11 @@ public class MovieController {
 
     @RequestMapping(value = "/movies", method = RequestMethod.POST)
     public Movie restMovie(@RequestBody Movie movie) {
+
         movie = movieDAO.create(movie);
         return movie;
     }
+
     @RequestMapping(value = "/movies", method = RequestMethod.PUT)
     public Movie updateMovie(@RequestBody Movie movie) {
         Movie testMovie = movieDAO.getById((int) movie.getId());
@@ -44,7 +54,6 @@ public class MovieController {
         if(movie == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "ID "+ movie.getId() + " was not found.");
         }
-//        for(i=3; i < )
         return movie;
     }
     @RequestMapping(value = "/movies/{id}", method = RequestMethod.PUT)

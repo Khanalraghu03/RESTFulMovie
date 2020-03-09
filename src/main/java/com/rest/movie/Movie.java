@@ -13,8 +13,34 @@ public class Movie {
     private String description;
     private int rateNum;
 
+    public Movie() {
+        this.id = 0;
+        this.title = "title";
+        this.genre = "genre";
+        this.rate = 10;
+        this.description = "desc";
+        this.rateNum = 10;
+    }
+    public Movie(int id, String title) {
+        this.id = id;
+        this.title = title;
+        this.genre = "genre";
+        this.rate = 10;
+        this.description = "desc";
+        this.rateNum = 10;
+    }
+    public Movie(int id, String title, String genre, double rate, String description, int rateNum) {
+        this.id = id;
+        this.title = title;
+        this.genre = "";
+        this.rate = 0.0;
+        this.description = "";
+        this.rateNum = 0;
+    }
+
+
     @Basic
-    @Column(name = "id")
+    @Column(name = "id", columnDefinition="int")
     public int getId() {
         return id;
     }
@@ -24,7 +50,7 @@ public class Movie {
     }
 
     @Basic
-    @Column(name = "title")
+    @Column(name = "title", columnDefinition="text")
     public String getTitle() {
         return title;
     }
@@ -34,7 +60,7 @@ public class Movie {
     }
 
     @Basic
-    @Column(name = "genre")
+    @Column(name = "genre", columnDefinition="text")
     public String getGenre() {
         return genre;
     }
@@ -44,7 +70,7 @@ public class Movie {
     }
 
     @Basic
-    @Column(name = "rate")
+    @Column(name = "rate", columnDefinition="numeric")
     public double getRate() {
         return rate;
     }
@@ -54,7 +80,7 @@ public class Movie {
     }
 
     @Basic
-    @Column(name = "description")
+    @Column(name = "description", columnDefinition="text")
     public String getDescription() {
         return description;
     }
@@ -64,13 +90,25 @@ public class Movie {
     }
 
     @Basic
-    @Column(name = "rateNum")
+    @Column(name = "rateNum", columnDefinition="int")
     public int getRateNum() {
         return rateNum;
     }
 
     public void setRateNum(int rateNum) {
         this.rateNum = rateNum;
+    }
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", genre='" + genre + '\'' +
+                ", rate=" + rate +
+                ", description='" + description + '\'' +
+                ", rateNum=" + rateNum +
+                '}';
     }
 
     @Override
